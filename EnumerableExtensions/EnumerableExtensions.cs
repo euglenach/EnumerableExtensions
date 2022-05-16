@@ -99,6 +99,25 @@ namespace Suima.Extensions {
                 Console.WriteLine(item.ToString());
             }
         }
+        
+        public static IEnumerable<T> Loop<T>(this IEnumerable<T> source,int count){
+            var arr = source.ToArray();
+            for (var i = 0; i < count; i++)
+            {
+                foreach (var item in arr)
+                {
+                    yield return item;
+                }
+            }
+        }
+        
+        public static IEnumerable<T> Repeat<T>(this IEnumerable<T> source,int count){
+            var arr = source.ToArray();
+            var arrCount = arr.Length;
+            for (var i = 0; i < count; i++)
+            {
+                yield return arr[i % arrCount];
+            }
+        }
     }
-    
 }
